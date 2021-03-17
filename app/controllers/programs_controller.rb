@@ -3,9 +3,8 @@ class ProgramsController < ApplicationController
 
   # GET /programs
   def index
-    @programs = Program.all
-
-    render json: @programs
+    programs = Program.all
+    render json: programs.to_json(include: [:exercises])
   end
 
   # GET /programs/1
