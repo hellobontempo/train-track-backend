@@ -6,7 +6,7 @@ class CreateUserPrograms < ActiveRecord::Migration[6.1]
       t.integer :first_rest_day
       t.integer :second_rest_day
       t.references :program, null: false, foreign_key: true
-
+    
       t.timestamps
     end
   end
