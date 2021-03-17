@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_223805) do
+ActiveRecord::Schema.define(version: 2021_03_17_230215) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2021_03_16_223805) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_programs", force: :cascade do |t|
+    t.date "start_date"
+    t.string "username"
+    t.integer "first_rest_day"
+    t.integer "second_rest_day"
+    t.integer "program_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["program_id"], name: "index_user_programs_on_program_id"
+  end
+
   add_foreign_key "program_exercises", "exercises"
   add_foreign_key "program_exercises", "programs"
+  add_foreign_key "user_programs", "programs"
 end
