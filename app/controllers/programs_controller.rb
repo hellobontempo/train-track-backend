@@ -4,12 +4,12 @@ class ProgramsController < ApplicationController
   # GET /programs
   def index
     programs = Program.all
-    render json: programs.to_json(include: [:exercises])
+    render json: programs, include: [:program_exercises, :exercises], except: [:updated_at, :created_at]
   end
 
   # GET /programs/1
   def show
-    render json: @program
+    render json: @program, include: [:program_exercises]
   end
 
   # POST /programs

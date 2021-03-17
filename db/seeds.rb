@@ -9,11 +9,11 @@
 # enum exercise_type: {run: 0, strength: 1, recovery: 2, cross_train: 3, rest: 4}
 
 
-run = Exercise.create(name: "run", exercise_type: 0 ), 
-yoga = Exercise.create(name: "yoga", exercise_type: 2), 
-cycling = Exercise.create(name: "cycling", exercise_type: 3), 
-strength = Exercise.create(name: "strength training", exercise_type: 1 ),
-swimming = Exercise.create(name: "swimming", exercise_type: 3),
+run = Exercise.create(name: "run", exercise_type: 0 )
+yoga = Exercise.create(name: "yoga", exercise_type: 2) 
+cycling = Exercise.create(name: "cycling", exercise_type: 3)
+strength = Exercise.create(name: "strength training", exercise_type: 1 )
+swimming = Exercise.create(name: "swimming", exercise_type: 3)
 rest = Exercise.create(name: "rest", exercise_type: 4)
 
 

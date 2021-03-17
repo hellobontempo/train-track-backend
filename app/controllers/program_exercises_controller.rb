@@ -5,7 +5,7 @@ class ProgramExercisesController < ApplicationController
   def index
     @program_exercises = ProgramExercise.all
 
-    render json: @program_exercises
+    render json: @program_exercises, include: [:exercises]
   end
 
   # GET /program_exercises/1
