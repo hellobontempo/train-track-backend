@@ -24,7 +24,7 @@ mara_training = Program.create(title: "Half Marathon Training", length_in_weeks:
 
 
 ProgramExercise.create([
-    #week 1
+
     {day: 1, exercise: rest, program: mara_training},
     {day: 2, miles: 3, exercise: run, program: mara_training},
     {day: 3, exercise: strength, program: mara_training},
@@ -32,7 +32,7 @@ ProgramExercise.create([
     {day: 5, exercise: cycling, program: mara_training},
     {day: 6, exercise: rest, program: mara_training},
     {day: 7, miles: 7, exercise: run, program: mara_training},
-    #week 2
+
     {day: 8, exercise: rest, program: mara_training},
     {day: 9, miles: 4, exercise: run, program: mara_training},
     {day: 10, exercise: strength, program: mara_training},
@@ -40,7 +40,7 @@ ProgramExercise.create([
     {day: 12, exercise: yoga, program: mara_training},
     {day: 13, exercise: rest, program: mara_training},
     {day: 14, miles: 8, exercise: run, program: mara_training},
-    #week 3
+
     {day: 15, exercise: rest, program: mara_training},
     {day: 16, miles: 3, exercise: run, program: mara_training},
     {day: 17, exercise: strength, program: mara_training},
@@ -49,7 +49,6 @@ ProgramExercise.create([
     {day: 20, exercise: rest, program: mara_training},
     {day: 21, miles: 9, exercise: run, program: mara_training},
     
-    #week 4
     {day: 22, exercise: rest, program: mara_training},
     {day: 23, miles: 4, exercise: run, program: mara_training},
     {day: 24, exercise: strength, program: mara_training},
@@ -58,7 +57,6 @@ ProgramExercise.create([
     {day: 27, exercise: rest, program: mara_training},
     {day: 28, miles: 10, exercise: run, program: mara_training},
     
-    #week 5
     {day: 29, exercise: rest, program: mara_training},
     {day: 30, miles: 3, exercise: run, program: mara_training},
     {day: 31, exercise: strength, program: mara_training},
@@ -67,7 +65,6 @@ ProgramExercise.create([
     {day: 34, exercise: rest, program: mara_training},
     {day: 35, miles: 11, exercise: run, program: mara_training},
     
-    #week 5
     {day: 35, exercise: rest, program: mara_training},
     {day: 36, miles: 3, exercise: run, program: mara_training},
     {day: 37, exercise: strength, program: mara_training},

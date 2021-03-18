@@ -17,7 +17,8 @@ class UserProgramsController < ApplicationController
   def create
     byebug
     @user_program = UserProgram.new(user_program_params)
-
+    user_program_params["first_rest_day"].to_i
+    user_program_params["second_rest_day"].to_i
     if @user_program.save
       render json: @user_program, status: :created, location: @user_program
     else
@@ -47,6 +48,6 @@ class UserProgramsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_program_params
-      params.require(:user_program).permit(:start_date, :username, :program_id)
+      params.require(:user_program).permit(:start_date, :username, :program_id, :first_rest_day, :second_rest_day)
     end
 end
