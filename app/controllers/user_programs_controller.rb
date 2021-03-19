@@ -21,7 +21,7 @@ class UserProgramsController < ApplicationController
     program_length = @user_program.program.length_in_weeks
     date = DateTime.parse(user_program_params["race_date"]).to_date - (program_length * 7)
     @user_program.start_date = date.to_s
-    if @user_program.save
+    if @user_program.save!
       render json: @user_program, status: :created, location: @user_program
     else
       render json: @user_program.errors, status: :unprocessable_entity
