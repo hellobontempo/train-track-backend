@@ -15,7 +15,6 @@ class UserProgramsController < ApplicationController
 
   # POST /user_programs
   def create
-    byebug
     @user_program = UserProgram.new(user_program_params)
     user_program_params["first_rest_day"].to_i
     user_program_params["second_rest_day"].to_i
