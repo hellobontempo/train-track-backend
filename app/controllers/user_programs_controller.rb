@@ -18,7 +18,8 @@ class UserProgramsController < ApplicationController
     @user_program = UserProgram.new(user_program_params)
     @user_program.first_rest_day.to_i
     @user_program.second_rest_day.to_i
-    date = DateTime.parse(user_program_params["start_date"]).to_date - 42
+    program_length = @user_program.program.length_in_weeks
+    date = DateTime.parse(user_program_params["race_date"]).to_date - (program_length * 7)
     @user_program.start_date = date.to_s
     if @user_program.save
       render json: @user_program, status: :created, location: @user_program
@@ -49,6 +50,6 @@ class UserProgramsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_program_params
-      params.require(:user_program).permit(:start_date, :username, :program_id, :first_rest_day, :second_rest_day)
+      params.require(:user_program).permit(:race_date, :username, :program_id, :first_rest_day, :second_rest_day)
     end
 end
