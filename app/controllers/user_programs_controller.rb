@@ -16,8 +16,10 @@ class UserProgramsController < ApplicationController
   # POST /user_programs
   def create
     @user_program = UserProgram.new(user_program_params)
-    user_program_params["first_rest_day"].to_i
-    user_program_params["second_rest_day"].to_i
+    @user_program.first_rest_day.to_i
+    @user_program.second_rest_day.to_i
+    date = DateTime.parse(user_program_params["start_date"]).to_date - 42
+    @user_program.start_date = date.to_s
     if @user_program.save
       render json: @user_program, status: :created, location: @user_program
     else
