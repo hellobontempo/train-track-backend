@@ -1,5 +1,7 @@
 class UserProgram < ApplicationRecord
   belongs_to :program
+  before_save :sets_program
+  #add belongs_to user when build User model
 
   validate :rest_days_are_valid
 
@@ -9,11 +11,14 @@ class UserProgram < ApplicationRecord
       errors.add(:first_rest_day, "Rest days must be 2 or 5 days apart")
     end
   end
-  #add belongs_to user when build User model
 
+  def sets_program
+    program_length = self.program.length_in_weeks
+    date = self.race_date - (program_length * 7)
+    self.start_date = date
+  end
 
   def make_personal_calendar 
-    #takes out rest days, 
     self.first_rest_day
     self.start_date.wday # returns integer of start_date
     self.race_date.wday # returns integer of start_date
