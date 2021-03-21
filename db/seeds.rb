@@ -10,7 +10,7 @@
 
 
 run = Exercise.create(name: "run", exercise_type: 0 )
-yoga = Exercise.create(name: "yoga", exercise_type: 2) 
+yoga = Exercise.create(name: "yoga", exercise_type: 3) 
 cycling = Exercise.create(name: "cycling", exercise_type: 3)
 strength = Exercise.create(name: "strength training", exercise_type: 1 )
 swimming = Exercise.create(name: "swimming", exercise_type: 3)
@@ -24,7 +24,7 @@ mara_training = Program.create(title: "Half Marathon Training", length_in_weeks:
 
 
 ProgramExercise.create([
-
+    
     {day: 1, exercise: rest, program: mara_training},
     {day: 2, miles: 3, exercise: run, program: mara_training},
     {day: 3, exercise: strength, program: mara_training},
@@ -65,10 +65,10 @@ ProgramExercise.create([
     {day: 34, exercise: rest, program: mara_training},
     {day: 35, miles: 11, exercise: run, program: mara_training},
     
-    {day: 35, exercise: rest, program: mara_training},
-    {day: 36, miles: 3, exercise: run, program: mara_training},
-    {day: 37, exercise: strength, program: mara_training},
-    {day: 38, miles: 3, exercise: run, program: mara_training},
-    {day: 39, exercise: cycling, program: mara_training},
-    {day: 40, exercise: rest, program: mara_training}
+    {day: 36, exercise: rest, program: mara_training},
+    {day: 37, miles: 3, exercise: run, program: mara_training},
+    {day: 38, exercise: strength, program: mara_training},
+    {day: 39, miles: 3, exercise: run, program: mara_training},
+    {day: 40, exercise: cycling, program: mara_training},
+    {day: 41, exercise: rest, program: mara_training}
 ])

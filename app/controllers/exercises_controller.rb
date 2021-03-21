@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
   def index
     @exercises = Exercise.all
 
-    render json: @exercises
+    render json: @exercises, except: [:updated_at, :created_at]
   end
 
   # GET /exercises/1
