@@ -6,6 +6,7 @@ class UserProgram < ApplicationRecord
   
 
   before_save :sets_program
+  before_save :make_personal_calendar
   validate :rest_days_are_valid
 
 
