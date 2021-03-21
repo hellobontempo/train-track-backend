@@ -14,9 +14,9 @@ class UserProgram < ApplicationRecord
   end
 
   def sets_program
-    program_length = self.program.length_in_weeks
-    date = self.race_date - (program_length * 7)
-    self.start_date = date
+    program_length = program.length_in_weeks
+    date = race_date - (program_length * 7)
+    self.start_date = date - (first_rest_day - date.wday).abs 
   end
 
   def make_personal_calendar 
