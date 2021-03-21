@@ -5,12 +5,12 @@ class UserProgramsController < ApplicationController
   def index
     @user_programs = UserProgram.all
 
-    render json: @user_programs
+    render json: @user_programs, include: [:custom_programs]
   end
 
   # GET /user_programs/1
   def show
-    render json: @user_program
+    render json: @user_program, include: [:custom_programs]
   end
 
   # POST /user_programs
