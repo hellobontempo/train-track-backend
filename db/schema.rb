@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_163721) do
+ActiveRecord::Schema.define(version: 2021_03_21_170812) do
 
   create_table "custom_programs", force: :cascade do |t|
     t.integer "exercise_id", null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_163721) do
     t.integer "week"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_race_day"
     t.index ["exercise_id"], name: "index_custom_programs_on_exercise_id"
     t.index ["user_program_id"], name: "index_custom_programs_on_user_program_id"
   end
