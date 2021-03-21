@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_005714) do
 
   create_table "user_programs", force: :cascade do |t|
     t.date "start_date"
-    t.string "username"
+    t.string "username" #will eventually change to user_id
     t.integer "first_rest_day"
     t.integer "second_rest_day"
     t.integer "program_id", null: false
