@@ -5,10 +5,9 @@ class UserProgram < ApplicationRecord
   #add belongs_to user when build User model
   
 
-  before_save :sets_program
-  before_save :make_personal_calendar
+  before_save :set_start_date
+  after_save :make_personal_calendar
   validate :rest_days_are_valid
-
 
   def rest_days_are_valid
     absolute = (first_rest_day - second_rest_day).abs
@@ -17,9 +16,8 @@ class UserProgram < ApplicationRecord
     end
   end
 
-  def sets_program
-    date = race_date - (program_length * 7)
-    self.start_date = date 
+  def set_start_date
+    self.start_date = race_date - (program_length * 7)
   end
 
   ## make programs patterns of exercise numbers? ex: [6, 1, 4, 1, 3, 6, 1]
@@ -47,50 +45,47 @@ class UserProgram < ApplicationRecord
     end
   end
 
+
+
   def set_exercises(exercise_id, weekday_index, run_type = "" ) #sets exercise_ids using weekday index number
-   
-    exercise_days = self.custom_programs.select do |program|
-      self.work_out_days(weekday_index).include?(program.day)
-    end
-    exercise_days.map do |program|
+    exercise_by_weekday(weekday_index).each do |program|
       program.exercise_id = exercise_id
       if exercise_id == 1
-        case run_type 
+        case run_type
           when "first"
-          program.week.odd? ? program.miles = 3 : program.miles = 4 
+            program.week.odd? ? program.miles = 3 : program.miles = 4 
           when "fast"
             if program.week <= 3 
               program.miles = 3 + program.week
-              elsif program.week == 4
+            elsif program.week == 4
               program.miles = program.week + 1
-              elsif 
+            elsif 
               program.miles = program.week - 1
             end
           when "long"
             if program.week != 6
               program.miles = program.week + 6
-              else 
+            else 
               program.miles = 13.1
             end
-          else 
-          return
-        end
-
+          else
+            puts "no miles"
+          end
       end
-    end
-    exercise_days.each do |p|
-      p.save
+      program.save
     end
   end
 
-  def work_out_days(week_day) #creates array of days in a program that all have the same exercise
-    d = week_day+1
+  def exercise_by_weekday(wkday_index) #creates array CustomPrograms that all have the same exercise, based on day of week
+    d = wkday_index+1
     array = []
     program_length.times do 
         array.push(d) 
         d += 7
     end
-    array
+    self.custom_programs.select do |program|
+      array.include?(program.day)
+    end
   end
 
   def program_length
