@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_005714) do
+ActiveRecord::Schema.define(version: 2021_03_21_163721) do
+
+  create_table "custom_programs", force: :cascade do |t|
+    t.integer "exercise_id", null: false
+    t.integer "user_program_id", null: false
+    t.integer "day"
+    t.date "workout_date"
+    t.integer "miles"
+    t.integer "week"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercise_id"], name: "index_custom_programs_on_exercise_id"
+    t.index ["user_program_id"], name: "index_custom_programs_on_user_program_id"
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
@@ -39,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_005714) do
 
   create_table "user_programs", force: :cascade do |t|
     t.date "start_date"
-    t.string "username" #will eventually change to user_id
+    t.string "username"
     t.integer "first_rest_day"
     t.integer "second_rest_day"
     t.integer "program_id", null: false
@@ -49,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_005714) do
     t.index ["program_id"], name: "index_user_programs_on_program_id"
   end
 
+  add_foreign_key "custom_programs", "exercises"
+  add_foreign_key "custom_programs", "user_programs"
   add_foreign_key "program_exercises", "exercises"
   add_foreign_key "program_exercises", "programs"
   add_foreign_key "user_programs", "programs"

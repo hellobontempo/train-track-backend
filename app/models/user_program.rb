@@ -1,8 +1,11 @@
 class UserProgram < ApplicationRecord
   belongs_to :program
-  before_save :sets_program
+  has_many :custom_programs
+  has_many :exercises, through: :custom_programs
   #add belongs_to user when build User model
+  
 
+  before_save :sets_program
   validate :rest_days_are_valid
 
 
