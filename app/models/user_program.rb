@@ -5,6 +5,7 @@ class UserProgram < ApplicationRecord
 
   validate :rest_days_are_valid
 
+
   def rest_days_are_valid
     absolute = (first_rest_day - second_rest_day).abs
     if absolute != 5 && absolute != 2  

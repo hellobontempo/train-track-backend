@@ -17,6 +17,7 @@ class UserProgramsController < ApplicationController
   def create
     byebug
     @user_program = UserProgram.new(user_program_params)
+
     if @user_program.save
       render json: @user_program, status: :created, location: @user_program
     else
