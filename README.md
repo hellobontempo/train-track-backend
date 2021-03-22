@@ -1,24 +1,21 @@
-# README
+# TrainTrack
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An application to help organize your training regiment so you're race-ready! 
 
-Things you may want to cover:
+[Frontend Link](https://github.com/hellobontempo/train-track-frontend)
 
-* Ruby version
+## Getting Start 
 
-* System dependencies
+In the project directory, you can run: `bundle install` to get the necessary gems, please also `rails db:migrate` to set up the database. I also recommend running `rails db:seed` if you would like an initial training program to view.
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## Contributors 
+If you have any interest in adding or collaborating feel free to reach out. I welcome any input!
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## License
+[CC BY-NC-SA 4.0]( https://creativecommons.org/licenses/by-nc-sa/4.0/
+)
 
-* ...
