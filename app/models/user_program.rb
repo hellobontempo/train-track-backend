@@ -1,6 +1,6 @@
 class UserProgram < ApplicationRecord
   belongs_to :program
-  has_many :custom_programs
+  has_many :custom_programs, -> { order(:day) }
   has_many :exercises, through: :custom_programs
   #add belongs_to user when build User model
 

@@ -11,6 +11,7 @@ class UserProgramsController < ApplicationController
   # GET /user_programs/1
   def show
     render json: @user_program, include: [:custom_programs]
+    # format.json  { render :json => @customer, :methods => :recent_calls}
   end
 
   # POST /user_programs
