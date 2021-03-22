@@ -3,11 +3,12 @@ class UserProgram < ApplicationRecord
   has_many :custom_programs
   has_many :exercises, through: :custom_programs
   #add belongs_to user when build User model
-  
 
   before_save :set_start_date
   after_save :make_personal_calendar
   validate :rest_days_are_valid
+
+
 
   def rest_days_are_valid
     absolute = (first_rest_day - second_rest_day).abs
