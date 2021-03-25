@@ -2,7 +2,6 @@ class UserProgram < ApplicationRecord
   belongs_to :program
   has_many :custom_programs, -> { order(:day) }
   has_many :exercises, through: :custom_programs
-  accepts_nested_attributes_for :exercisesp
   #add belongs_to user when build User model
 
   before_save :set_start_date
