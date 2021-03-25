@@ -15,14 +15,15 @@ cycling = Exercise.create(name: "cycling", exercise_type: 3)
 strength = Exercise.create(name: "strength training", exercise_type: 1 )
 swimming = Exercise.create(name: "swimming", exercise_type: 3)
 rest = Exercise.create(name: "rest", exercise_type: 4)
+walk = Exercise.create(name: "walk", exercise_type: 2)
+gentle = Exercise.create(name: "gentle yoga", exercise_type: 2)
 
 
 # cross_train =  Exercise.where(exercise_type: "cross_train").pluck(:id)
 # sample_cross = Exercise.find(cross_train.sample)
 
-mara_training = Program.create(title: "Half Marathon Training", length_in_weeks: 6)
+mara_training = Program.create(title: "Half Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long")
 
-ProgramExercise
 # ProgramExercise.create([
     
 #     {day: 1, exercise: rest, program: mara_training},

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_170812) do
+ActiveRecord::Schema.define(version: 2021_03_25_200453) do
 
   create_table "custom_programs", force: :cascade do |t|
     t.integer "exercise_id", null: false
@@ -49,13 +49,12 @@ ActiveRecord::Schema.define(version: 2021_03_21_170812) do
     t.integer "length_in_weeks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "routine"
   end
 
   create_table "user_programs", force: :cascade do |t|
     t.date "start_date"
     t.string "username"
-    t.integer "first_rest_day"
-    t.integer "second_rest_day"
     t.integer "program_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

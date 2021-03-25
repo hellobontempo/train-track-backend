@@ -2,20 +2,22 @@ class UserProgram < ApplicationRecord
   belongs_to :program
   has_many :custom_programs, -> { order(:day) }
   has_many :exercises, through: :custom_programs
+  has_many :cross_train_preferences, foreign_key: "exercise_id", class_name: "Exercise"
+
   #add belongs_to user when build User model
 
   before_save :set_start_date
   after_save :make_personal_calendar
-  validate :rest_days_are_valid
+  # validate :rest_days_are_valid
 
 
 
-  def rest_days_are_valid
-    absolute = (first_rest_day - second_rest_day).abs
-    if absolute != 5 && absolute != 2  
-      errors.add(:first_rest_day, "Rest days must be 2 or 5 days apart")
-    end
-  end
+  # def rest_days_are_valid
+  #   absolute = (first_rest_day - second_rest_day).abs
+  #   if absolute != 5 && absolute != 2  
+  #     errors.add(:first_rest_day, "Rest days must be 2 or 5 days apart")
+  #   end
+  # end
 
   def set_start_date
     self.start_date = (race_date - (program_length * 7)) + 1
@@ -25,6 +27,7 @@ class UserProgram < ApplicationRecord
   def make_personal_calendar 
     self.make_custom_program
     weekday_index = self.start_date.wday
+    #iterate and change set_exercises each time, adding 1 to wkday index 
     self.set_exercises(6, weekday_index)
     self.set_exercises(1, weekday_index+1, run_type = "first")
     self.set_exercises(4, weekday_index+2)
@@ -33,6 +36,8 @@ class UserProgram < ApplicationRecord
     self.set_exercises(6, weekday_index+5)
     self.set_exercises(1, weekday_index+6, run_type = "long")
   end
+
+  
 
   def make_custom_program # builds program skeleton
     d = 0
