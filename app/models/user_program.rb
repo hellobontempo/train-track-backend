@@ -2,12 +2,13 @@ class UserProgram < ApplicationRecord
   belongs_to :program
   has_many :custom_programs, -> { order(:day) }
   has_many :exercises, through: :custom_programs
-  has_many :cross_train_preferences, foreign_key: "exercise_id", class_name: "Exercise"
+  # has_many :cross_train_preferences, foreign_key: :user_program_id, class_name: "Exercise"
+
 
   #add belongs_to user when build User model
 
-  before_save :set_start_date
-  after_save :make_personal_calendar
+  # before_save :set_start_date
+  before_save :make_personal_calendar
   # validate :rest_days_are_valid
 
 
@@ -19,22 +20,31 @@ class UserProgram < ApplicationRecord
   #   end
   # end
 
-  def set_start_date
-    self.start_date = (race_date - (program_length * 7)) + 1
-  end
+  # def set_start_date
+    
+  # end
 
   ## make programs patterns of exercise numbers? ex: [6, 1, 4, 1, 3, 6, 1]
   def make_personal_calendar 
+    self.start_date = (race_date - (program_length * 7)) + 1
     self.make_custom_program
     weekday_index = self.start_date.wday
     #iterate and change set_exercises each time, adding 1 to wkday index 
-    self.set_exercises(6, weekday_index)
-    self.set_exercises(1, weekday_index+1, run_type = "first")
-    self.set_exercises(4, weekday_index+2)
-    self.set_exercises(1, weekday_index+3, run_type = "fast")
-    self.set_exercises(3, weekday_index+4)
-    self.set_exercises(6, weekday_index+5)
-    self.set_exercises(1, weekday_index+6, run_type = "long")
+    hash = self.program.set_routine_hash
+    byebug
+    hash.each do | k, v |
+      exercise = Exercise.find_by_exercise_type(v[0])
+
+      self.set_exercises(exercise, weekday_index + k, run_type = v[1])
+    end
+    
+    # self.set_exercises(6, weekday_index)
+    # self.set_exercises(1, weekday_index+1, run_type = "first")
+    # self.set_exercises(4, weekday_index+2)
+    # self.set_exercises(1, weekday_index+3, run_type = "fast")
+    # self.set_exercises(3, weekday_index+4)
+    # self.set_exercises(6, weekday_index+5)
+    # self.set_exercises(1, weekday_index+6, run_type = "long")
   end
 
   
