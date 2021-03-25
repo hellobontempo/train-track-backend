@@ -18,28 +18,29 @@ class UserProgram < ApplicationRecord
   end
 
   def set_start_date
-    self.start_date = race_date - (program_length * 7)
+    self.start_date = (race_date - (program_length * 7)) + 1
   end
 
   ## make programs patterns of exercise numbers? ex: [6, 1, 4, 1, 3, 6, 1]
   def make_personal_calendar 
     self.make_custom_program
-    week_start_index = self.first_rest_day
-    self.set_exercises(6, week_start_index)
-    self.set_exercises(1, week_start_index+1, run_type = "first")
-    self.set_exercises(4, week_start_index+2)
-    self.set_exercises(1, week_start_index+3, run_type = "fast")
-    self.set_exercises(3, week_start_index+4)
-    self.set_exercises(6, week_start_index+5)
-    self.set_exercises(1, week_start_index+6, run_type = "long")
+    weekday_index = self.start_date.wday
+    self.set_exercises(6, weekday_index)
+    self.set_exercises(1, weekday_index+1, run_type = "first")
+    self.set_exercises(4, weekday_index+2)
+    self.set_exercises(1, weekday_index+3, run_type = "fast")
+    self.set_exercises(3, weekday_index+4)
+    self.set_exercises(6, weekday_index+5)
+    self.set_exercises(1, weekday_index+6, run_type = "long")
   end
 
   def make_custom_program # builds program skeleton
-    d = 1
+    d = 0
     w = 1
     self.program_length.times do
       7.times do 
-      self.custom_programs.build(day: d, week: w, workout_date: self.start_date + d, is_race_day: ( (start_date + d) == self.race_date ? true : false) ) 
+      date = self.start_date + d
+      self.custom_programs.build(day: d + 1, week: w, workout_date: date, is_race_day: (date == self.race_date ? true : false) ) 
         d += 1
       end
       w += 1
@@ -70,15 +71,15 @@ class UserProgram < ApplicationRecord
               program.miles = 13.1
             end
           else
-            puts "no miles"
+            return
           end
       end
-      program.save
+      program.save!
     end
   end
 
   def exercise_by_weekday(wkday_index) #creates array CustomPrograms that all have the same exercise, based on day of week
-    d = wkday_index+1
+    d = wkday_index + 1
     array = []
     program_length.times do 
         array.push(d) 
