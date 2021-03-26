@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cross_train_exercise_preferences
   resources :custom_programs
   resources :user_programs
   resources :program_exercises

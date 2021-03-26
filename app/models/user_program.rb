@@ -2,8 +2,8 @@ class UserProgram < ApplicationRecord
   belongs_to :program
   has_many :custom_programs, -> { order(:day) }
   has_many :exercises, through: :custom_programs
-  # has_many :cross_train_preferences, foreign_key: :user_program_id, class_name: "Exercise"
-
+  has_many :cross_train_exercise_preferences, foreign_key: :cross_train_program_id
+  has_many :preferred_exercises, through: :cross_train_exercise_preferences, source: :cross_train_exercise
 
   #add belongs_to user when build User model
 

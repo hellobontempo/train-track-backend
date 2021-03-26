@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_200453) do
+ActiveRecord::Schema.define(version: 2021_03_26_175151) do
+
+  create_table "cross_train_exercise_preferences", force: :cascade do |t|
+    t.integer "cross_train_program_id"
+    t.integer "cross_train_exercise_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "custom_programs", force: :cascade do |t|
     t.integer "exercise_id", null: false
