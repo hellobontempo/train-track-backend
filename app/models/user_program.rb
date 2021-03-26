@@ -8,36 +8,36 @@ class UserProgram < ApplicationRecord
   #add belongs_to user when build User model
 
 
-  before_save :make_personal_calendar
+  before_save :set_start_date
+  after_save  :make_personal_calendar
   
   
   
-  # validate :rest_days_are_valid
+  
 
-  # def rest_days_are_valid
-  #   absolute = (first_rest_day - second_rest_day).abs
-  #   if absolute != 5 && absolute != 2  
-  #     errors.add(:first_rest_day, "Rest days must be 2 or 5 days apart")
-  #   end
-  # end
-
-
+  def set_start_date
+    self.start_date = (race_date - (program_length * 7)) + 1
+  end
 
   ## program is patterns("routine") of exercise numbers: ex: [6, 1, 4, 1, 3, 6, 1]
   def make_personal_calendar 
     start_date = (race_date - (program_length * 7)) + 1
+    # set_preferred_exercises
     make_custom_program
     weekday_index = start_date.wday
-
     #iterate over hash and set_exercises each time
     program_routine_hash = program.set_routine_hash
     program_routine_hash.each do | k, v |
+      byebug
       exercise = Exercise.find_by_exercise_type(v[0])
       set_exercises(exercise.id, weekday_index + k, run_type = v[1])
     end
     
   end
 
+  def set_preferred_exercises
+    byebug
+  end
   
 
   def make_custom_program # builds program skeleton, creates CustomPrograms
