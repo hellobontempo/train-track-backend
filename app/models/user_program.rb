@@ -22,23 +22,19 @@ class UserProgram < ApplicationRecord
   ## program is patterns("routine") of exercise numbers: ex: [6, 1, 4, 1, 3, 6, 1]
   def make_personal_calendar 
     start_date = (race_date - (program_length * 7)) + 1
-    # set_preferred_exercises
     make_custom_program
     weekday_index = start_date.wday
     #iterate over hash and set_exercises each time
     program_routine_hash = program.set_routine_hash
+    byebug
     program_routine_hash.each do | k, v |
+      v[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(v[0]).id]
       byebug
-      exercise = Exercise.find_by_exercise_type(v[0])
-      set_exercises(exercise.id, weekday_index + k, run_type = v[1])
+      set_exercises(exercise, weekday_index + k, run_type = v[1])
     end
     
   end
 
-  def set_preferred_exercises
-    byebug
-  end
-  
 
   def make_custom_program # builds program skeleton, creates CustomPrograms
     d = 0
@@ -55,10 +51,10 @@ class UserProgram < ApplicationRecord
 
 
 
-  def set_exercises(exercise_id, weekday_index, run_type = "" ) #sets exercises, saves CustomPrograms`
+  def set_exercises(exercise, weekday_index, run_type = "" ) #sets exercises, saves CustomPrograms`
     exercise_by_weekday(weekday_index).each do |program|
-      program.exercise_id = exercise_id
-      if exercise_id == 1
+      program.exercise_id = exercise.sample
+      if exercise.sample == 1
         case run_type
           when "first"
             program.week.odd? ? program.miles = 3 : program.miles = 4 
