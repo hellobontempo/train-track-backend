@@ -36,14 +36,6 @@ class UserProgram < ApplicationRecord
       set_exercises(exercise.id, weekday_index + k, run_type = v[1])
     end
     
-    #below is abstracted above ^
-    # self.set_exercises(6, weekday_index)
-    # self.set_exercises(1, weekday_index+1, run_type = "first")
-    # self.set_exercises(4, weekday_index+2)
-    # self.set_exercises(1, weekday_index+3, run_type = "fast")
-    # self.set_exercises(3, weekday_index+4)
-    # self.set_exercises(6, weekday_index+5)
-    # self.set_exercises(1, weekday_index+6, run_type = "long")
   end
 
   
