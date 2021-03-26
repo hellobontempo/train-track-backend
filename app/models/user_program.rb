@@ -7,7 +7,6 @@ class UserProgram < ApplicationRecord
 
   #add belongs_to user when build User model
 
-
   before_save :set_start_date
   after_save  :make_personal_calendar
   
