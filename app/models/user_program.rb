@@ -26,10 +26,8 @@ class UserProgram < ApplicationRecord
     weekday_index = start_date.wday
     #iterate over hash and set_exercises each time
     program_routine_hash = program.set_routine_hash
-    byebug
     program_routine_hash.each do | k, v |
       v[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(v[0]).id]
-      byebug
       set_exercises(exercise, weekday_index + k, run_type = v[1])
     end
     
