@@ -4,11 +4,11 @@ class Program < ApplicationRecord
 
 
 
-    def set_routine_hash
+    def set_routine_hash(week_array = Date::DAYNAMES)
         routine_hash = {}
         array = routine.split(", ")
         new_arr = array.map{|e| e.split("-")}
-        new_arr.each_with_index.map {|type, index| routine_hash[index] = type}
+        new_arr.each_with_index.map {|type, index| routine_hash[week_array[index]] = type}
         routine_hash
     end
 

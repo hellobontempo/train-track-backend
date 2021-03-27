@@ -23,15 +23,13 @@ class UserProgram < ApplicationRecord
     start_date = (race_date - (program_length * 7)) + 1
     make_custom_program
     weekday_index = start_date.wday
-    #iterate over hash and set_exercises each time
-    program_routine_hash = program.set_routine_hash
-    program_routine_hash.each do | k, v |
-      v[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(v[0]).id]
-      set_exercises(exercise, weekday_index + k, run_type = v[1])
+    week_array =  Date::DAYNAMES.slice(weekday_index, 7) + Date::DAYNAMES.slice(0, weekday_index)
+    program_routine_hash = program.set_routine_hash(week_array)
+    program_routine_hash.each do | key, value|
+     value[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(value[0]).id]
+      set_exercises(exercise, Date::DAYNAMES.find_index(key), run_type = value[1])
     end
-    
   end
-
 
   def make_custom_program # builds program skeleton, creates CustomPrograms
     d = 0
@@ -71,16 +69,8 @@ class UserProgram < ApplicationRecord
     end
   end
 
-  def exercise_by_weekday(wkday_index) #creates array of CustomPrograms that all have the same exercise, based on day of week
-    d = wkday_index + 1
-    array = []
-    program_length.times do 
-        array.push(d) 
-        d += 7
-    end
-    self.custom_programs.select do |program|
-      array.include?(program.day)
-    end
+  def exercise_by_weekday(wkday_index)
+    custom_programs.select {|program| program.workout_date.wday == wkday_index}
   end
 
   def program_length
