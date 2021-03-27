@@ -56,21 +56,15 @@ class UserProgram < ApplicationRecord
           when "first"
             program.week.odd? ? program.miles = 3 : program.miles = 4 
           when "fast"
-            if program.week <= 3 
+            if program.week <= program_length/2
               program.miles = 3 + program.week
-            elsif program.week == 4
+            elsif program.week == program_length/2 + 1
               program.miles = program.week + 1
-            elsif 
+            else 
               program.miles = program.week - 1
             end
           when "long"
-            if program.week != 6
-              program.miles = program.week + 6
-            else 
-              program.miles = 13.1
-            end
-          else
-            return
+            program.week == program_length ? program.miles = 13 : program.miles = program.week + 6
           end
       end
       program.save
