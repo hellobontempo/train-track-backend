@@ -11,9 +11,6 @@ class UserProgram < ApplicationRecord
   after_save  :make_personal_calendar
   
   
-  
-  
-
   def set_start_date
     self.start_date = (race_date - (program_length * 7)) + 1
   end
@@ -22,8 +19,7 @@ class UserProgram < ApplicationRecord
   def make_personal_calendar 
     start_date = (race_date - (program_length * 7)) + 1
     make_custom_program
-    weekday_index = start_date.wday
-    week_array =  Date::DAYNAMES.slice(weekday_index, 7) + Date::DAYNAMES.slice(0, weekday_index)
+    week_array =  Date::DAYNAMES.slice(start_date.wday, 7) + Date::DAYNAMES.slice(0, start_date.wday)
     program_routine_hash = program.set_routine_hash(week_array)
     program_routine_hash.each do | key, value|
      value[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(value[0]).id]
@@ -59,7 +55,7 @@ class UserProgram < ApplicationRecord
             elsif program.week == program_length/2 + 1
               program.miles = program.week + 1
             else 
-              program.miles = program.week - 1
+              program.miles = program.week - 1 
             end
           when "long"
             program.week == program_length ? program.miles = 13 : program.miles = program.week + 6
