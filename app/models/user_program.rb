@@ -75,7 +75,7 @@ class UserProgram < ApplicationRecord
   end
 
   def program_length
-    self.program.length_in_weeks
+    self.length_in_weeks
   end
 
 end

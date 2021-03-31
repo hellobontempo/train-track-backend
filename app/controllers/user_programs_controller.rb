@@ -46,6 +46,6 @@ class UserProgramsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_program_params
-      params.require(:user_program).permit(:race_date, :username, :program_id, preferred_exercise_ids:[])
+      params.require(:user_program).permit(:race_date, :username, :length_in_weeks, :program_id, preferred_exercise_ids:[])
     end
 end
