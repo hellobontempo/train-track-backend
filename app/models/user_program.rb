@@ -43,27 +43,32 @@ class UserProgram < ApplicationRecord
 
 
   def set_exercises(exercise, weekday_index, run_type = "" ) #sets exercises, saves CustomPrograms`
-    exercise_by_weekday(weekday_index).each do |program|
-      program.exercise_id = exercise.sample
+    exercise_by_weekday(weekday_index).each do |cp| #set custom program
+      cp.exercise_id = exercise.sample
       if exercise.sample == 1
         case run_type
           when "first"
-            program.week.odd? ? program.miles = 3 : program.miles = 4 
+            cp.week.odd? ? cp.miles = 3 : cp.miles = 4 
           when "fast"
-            if program.week <= program_length/2
-              program.miles = 3 + program.week
-            elsif program.week == program_length/2 + 1
-              program.miles = program.week + 1
+            if cp.week <= program_length/2
+              cp.miles = 3 + cp.week
+            elsif cp.week == program_length/2 + 1
+              cp.miles = cp.week + 1
             else 
-              program.miles = program.week - 1 
+              cp.miles = cp.week - 1 
             end
           when "long"
-            program.week == program_length ? program.miles = 13 : program.miles = program.week + 6
+            cp.week == program_length ? cp.miles = program.race_mileage : cp.miles = set_long_run(cp.week)
           end
       end
-      program.save
+      cp.save
     end
   end
+
+  def set_long_run(week)
+    program.final_training_run - ((program_length - 1) - week)
+  end
+
 
   def exercise_by_weekday(wkday_index)
     custom_programs.select {|program| program.workout_date.wday == wkday_index}

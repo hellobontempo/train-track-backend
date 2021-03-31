@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_175151) do
+ActiveRecord::Schema.define(version: 2021_03_30_232705) do
 
   create_table "cross_train_exercise_preferences", force: :cascade do |t|
     t.integer "cross_train_program_id"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_03_26_175151) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "routine"
+    t.decimal "race_mileage"
   end
 
   create_table "user_programs", force: :cascade do |t|

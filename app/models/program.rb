@@ -11,5 +11,9 @@ class Program < ApplicationRecord
         routine_hash
     end
 
+    def final_training_run
+        (0.83 * race_mileage).to_f.round
+    end
+
 
 end
