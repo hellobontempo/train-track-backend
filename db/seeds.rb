@@ -22,7 +22,11 @@ gentle = Exercise.create(name: "gentle yoga", exercise_type: 2)
 # cross_train =  Exercise.where(exercise_type: "cross_train").pluck(:id)
 # sample_cross = Exercise.find(cross_train.sample)
 
-mara_training = Program.create(title: "Half Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long")
+Program.create(title: "Half Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1)
+Program.create(title: "Full Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2)
+
+# Program.create(title: "Half Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1)
+# Program.create(title: "Full Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2)
 
 # ProgramExercise.create([
     

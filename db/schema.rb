@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_232705) do
+ActiveRecord::Schema.define(version: 2021_03_31_002640) do
 
   create_table "cross_train_exercise_preferences", force: :cascade do |t|
     t.integer "cross_train_program_id"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_232705) do
 
   create_table "programs", force: :cascade do |t|
     t.string "title"
-    t.integer "length_in_weeks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "routine"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_232705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "race_date"
+    t.integer "length_in_weeks"
     t.index ["program_id"], name: "index_user_programs_on_program_id"
   end
 
