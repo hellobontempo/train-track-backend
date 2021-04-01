@@ -6,7 +6,8 @@ class UserProgram < ApplicationRecord
   has_many :preferred_exercises, through: :cross_train_exercise_preferences, source: :cross_train_exercise
 
   #add belongs_to user when build User model
-
+  validates :length_in_weeks, { minimum: 4 }
+  validates :length_in_weeks, { maximum: 12 }
   before_save :set_start_date
   after_save  :make_personal_calendar
   
