@@ -11,13 +11,12 @@ class UserProgramsController < ApplicationController
   # GET /user_programs/1
   def show
     render json: @user_program, include: [:custom_programs, :preferred_exercises]
-    # format.json  { render :json => @customer, :methods => :recent_calls}
   end
 
   # POST /user_programs
   def create
     @user_program = UserProgram.new(user_program_params)
-    if @user_program.save!
+    if @user_program.save
       render json: @user_program, status: :created, location: @user_program
     else
       render json: @user_program.errors, status: :unprocessable_entity

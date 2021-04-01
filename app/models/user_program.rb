@@ -1,9 +1,9 @@
 class UserProgram < ApplicationRecord
   belongs_to :program
-  has_many :custom_programs, -> { order(:day) }
-  has_many :exercises, through: :custom_programs
-  has_many :cross_train_exercise_preferences, foreign_key: :cross_train_program_id
-  has_many :preferred_exercises, through: :cross_train_exercise_preferences, source: :cross_train_exercise
+  has_many :custom_programs, -> { order(:day) }, dependent: :destroy
+  has_many :exercises, through: :custom_programs, dependent: :destroy
+  has_many :cross_train_exercise_preferences, foreign_key: :cross_train_program_id, dependent: :destroy
+  has_many :preferred_exercises, through: :cross_train_exercise_preferences, source: :cross_train_exercise, dependent: :destroy
 
   #add belongs_to user when build User model
   validates :length_in_weeks, numericality: { greater_than_or_equal_to: 4 }
