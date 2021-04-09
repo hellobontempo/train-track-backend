@@ -24,8 +24,8 @@ class UserProgram < ApplicationRecord
     week_array =  Date::DAYNAMES.slice(start_date.wday, 7) + Date::DAYNAMES.slice(0, start_date.wday)
     program_routine_hash = program.set_routine_hash(week_array)
     program_routine_hash.each do | key, value|
-     value[0] == "cross_train" ? exercise_id = preferred_exercises.ids : exercise_id = Exercise.where(exercise_type: value[0]).ids
-      set_exercises(exercise_id, Date::DAYNAMES.find_index(key), run_type = value[1])
+     value[0] == "cross_train" ? exercise = preferred_exercises.ids : exercise = [Exercise.find_by_exercise_type(value[0]).id]
+      set_exercises(exercise, Date::DAYNAMES.find_index(key), run_type = value[1])
     end
   end
 
@@ -46,24 +46,20 @@ class UserProgram < ApplicationRecord
 
   def set_exercises(exercise, weekday_index, run_type = "" ) #sets exercises, saves CustomPrograms`
     exercise_by_weekday(weekday_index).each do |cp| #set custom program
-      if run_type != ""
+      cp.exercise_id = exercise.sample
+      if exercise.sample == 1
         case run_type
           when "first"
             cp.week.odd? ? cp.miles = 3 : cp.miles = 4 
-            cp.exercise_id = Exercise.find_by_name("Short Run - Easy Pace").id
           when "fast"
-            cp.exercise_id = Exercise.find_by_name("Tempo Run - Competitive Pace").id
             if cp.week <= program_length/2 + 1
               cp.miles = ((program.race_mileage/2)/(program_length/2) * cp.week) + 1
             else cp.week > program_length/2 + 1
               cp.week.odd? ? cp.miles = (program.race_mileage/2) : cp.miles = (program.race_mileage/2 - 1)
             end
           when "long"
-            cp.exercise_id = Exercise.find_by_name("Long Run - Steady Pace").id
             cp.week == program_length ? cp.miles = program.race_mileage : cp.miles = set_long_run(cp.week)
           end
-        else
-          cp.exercise_id = exercise.sample
       end
       cp.save
     end

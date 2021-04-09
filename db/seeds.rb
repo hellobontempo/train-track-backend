@@ -9,9 +9,7 @@
 # enum exercise_type: {run: 0, strength: 1, recovery: 2, cross_train: 3, rest: 4}
 
 
-short_run = Exercise.create(name: "Short Run - Easy Pace", exercise_type: 0 )
-tempo_run = Exercise.create(name: "Tempo Run - Competitive Pace", exercise_type: 0 )
-run = Exercise.create(name: "Long Run - Steady Pace", exercise_type: 0 )
+run = Exercise.create(name: "run", exercise_type: 0 )
 yoga = Exercise.create(name: "yoga", exercise_type: 3) 
 cycling = Exercise.create(name: "cycling", exercise_type: 3)
 strength = Exercise.create(name: "strength training", exercise_type: 1 )
