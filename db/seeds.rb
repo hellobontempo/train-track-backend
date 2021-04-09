@@ -8,22 +8,24 @@
 
 # enum exercise_type: {run: 0, strength: 1, recovery: 2, cross_train: 3, rest: 4}
 
-
-run = Exercise.create(name: "run", exercise_type: 0 )
-yoga = Exercise.create(name: "yoga", exercise_type: 3) 
-cycling = Exercise.create(name: "cycling", exercise_type: 3)
-strength = Exercise.create(name: "strength training", exercise_type: 1 )
-swimming = Exercise.create(name: "swimming", exercise_type: 3)
-rest = Exercise.create(name: "rest", exercise_type: 4)
-walk = Exercise.create(name: "walk", exercise_type: 2)
-gentle = Exercise.create(name: "gentle yoga", exercise_type: 2)
+short_run = Exercise.create(name: "Short Run", exercise_type: 0 )
+tempo_run = Exercise.create(name: "Tempo Run", exercise_type: 0 )
+long_run = Exercise.create(name: "Long Run", exercise_type: 0 )
+run = Exercise.create(name: "Run", exercise_type: 0 )
+yoga = Exercise.create(name: "Yoga", exercise_type: 3) 
+cycling = Exercise.create(name: "Cycling", exercise_type: 3)
+strength = Exercise.create(name: "Strength Training", exercise_type: 1 )
+swimming = Exercise.create(name: "Swimming", exercise_type: 3)
+rest = Exercise.create(name: "Rest", exercise_type: 4)
+walk = Exercise.create(name: "Walk", exercise_type: 2)
+gentle = Exercise.create(name: "Gentle Yoga", exercise_type: 2)
 
 
 # cross_train =  Exercise.where(exercise_type: "cross_train").pluck(:id)
 # sample_cross = Exercise.find(cross_train.sample)
 
-Program.create(title: "Half Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1)
-Program.create(title: "Full Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2)
+Program.create(title: "Half Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1, description: "First Run: Nice, easy pace. If you're new to running it is okay to walk/run. \n Second Run: Tempo Run. Try to maintain a competitive pace. \n Third Run: Long Run. Work to maintain a steady pace as your mileage increases closer to race day.")
+Program.create(title: "Full Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2, description: "First Run: Nice, easy pace. If you're new to running it is okay to walk/run. \n Second Run: Tempo Run. Try to maintain a competitive pace. \n Third Run: Long Run. Work to maintain a steady pace as your mileage increases closer to race day.")
 
 # Program.create(title: "Half Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1)
 # Program.create(title: "Full Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2)
