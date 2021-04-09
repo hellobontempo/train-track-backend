@@ -24,8 +24,8 @@ gentle = Exercise.create(name: "Gentle Yoga", exercise_type: 2)
 # cross_train =  Exercise.where(exercise_type: "cross_train").pluck(:id)
 # sample_cross = Exercise.find(cross_train.sample)
 
-Program.create(title: "Half Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1, description: "Short Run: Nice, easy pace. If you're new to running it's okay to walk/run. Tempo Run: Maintain a competitive pace. Goal is to increase speed every week. Long Run. Aim to maintain a steady pace as your mileage increases closer to race day.")
-Program.create(title: "Full Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2, description: "Short Run: Nice, easy pace. If you're new to running it's okay to walk/run. Tempo Run: Maintain a competitive pace. Goal is to increase speed every week. Long Run. Aim to maintain a steady pace as your mileage increases closer to race day.")
+Program.create(title: "Half Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1, description: "Short Run: Nice, easy pace. If you're new to running it's okay to walk/run - Tempo Run: Maintain a competitive pace. Goal is to increase speed every week - Long Run: Aim to maintain a steady pace as your mileage increases closer to race day.")
+Program.create(title: "Full Marathon Training", routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2, description: "Short Run: Nice, easy pace. If you're new to running it's okay to walk/run - Tempo Run: Maintain a competitive pace. Goal is to increase speed every week - Long Run: Aim to maintain a steady pace as your mileage increases closer to race day.")
 
 # Program.create(title: "Half Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 13.1)
 # Program.create(title: "Full Marathon Training", length_in_weeks: 6, routine: "rest, run-first, strength, run-fast, cross_train, rest, run-long", race_mileage: 26.2)
