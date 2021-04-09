@@ -52,12 +52,10 @@ class UserProgram < ApplicationRecord
           when "first"
             cp.week.odd? ? cp.miles = 3 : cp.miles = 4 
           when "fast"
-            if cp.week <= program_length/2
-              cp.miles = 3 + cp.week
-            elsif cp.week == program_length/2 + 1
-              cp.miles = cp.week + 1
-            else 
-              cp.miles = cp.week - 1 
+            if cp.week <= program_length/2 + 1
+              cp.miles = ((program.race_mileage/2)/(program_length/2) * cp.week) + 1
+            else cp.week > program_length/2 + 1
+              cp.week.odd? ? cp.miles = (program.race_mileage/2) : (program.race_mileage/2 - 1)
             end
           when "long"
             cp.week == program_length ? cp.miles = program.race_mileage : cp.miles = set_long_run(cp.week)
