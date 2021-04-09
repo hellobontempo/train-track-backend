@@ -51,13 +51,16 @@ class UserProgram < ApplicationRecord
         case run_type
           when "first"
             cp.week.odd? ? cp.miles = 3 : cp.miles = 4 
+            cp.exercise = Exercise.find_by_name("Short Run")
           when "fast"
+            cp.exercise = Exercise.find_by_name("Tempo Run")
             if cp.week <= program_length/2 + 1
               cp.miles = ((program.race_mileage/2)/(program_length/2) * cp.week) + 1
             else cp.week > program_length/2 + 1
               cp.week.odd? ? cp.miles = (program.race_mileage/2) : cp.miles = (program.race_mileage/2 - 1)
             end
           when "long"
+            cp.exercise = Exercise.find_by_name("Long Run")
             cp.week == program_length ? cp.miles = program.race_mileage : cp.miles = set_long_run(cp.week)
           end
       end
