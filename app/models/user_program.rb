@@ -66,8 +66,12 @@ class UserProgram < ApplicationRecord
   end
 
   def set_long_run(week)
-    # program.final_training_run - ((program_length - 1) - week)
-    cp.miles = ((program.race_mileage/2)/(program_length/2) * cp.week) + 1
+    if week <= program_length/2
+      cp.week.odd? ? cp.miles = (program.race_mileage/2) : cp.miles = (program.race_mileage/2 + 1)
+    else 
+      miles = program.final_training_run - ((program_length - 1) - week)
+    end
+    miles
   end
 
 
