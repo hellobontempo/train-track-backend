@@ -1,5 +1,6 @@
 class CustomProgramsController < ApplicationController
   before_action :set_custom_program, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /custom_programs
   def index

@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /exercises
   def index

@@ -1,6 +1,7 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :update, :destroy]
-
+  skip_before_action :authorized, only: [:index]
+  
   # GET /programs
   def index
     programs = Program.all

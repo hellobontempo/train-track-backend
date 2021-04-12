@@ -1,5 +1,6 @@
 class UserProgramsController < ApplicationController
   before_action :set_user_program, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /user_programs
   def index
