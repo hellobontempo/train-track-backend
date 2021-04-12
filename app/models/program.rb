@@ -1,6 +1,8 @@
 class Program < ApplicationRecord
     has_many :program_exercises
     has_many :exercises, through: :program_exercises
+    has_many :user_programs
+    has_many :users, through: :user_programs
 
 
 

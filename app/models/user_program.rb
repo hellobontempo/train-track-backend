@@ -1,5 +1,6 @@
 class UserProgram < ApplicationRecord
   belongs_to :program
+  belongs_to :user
   has_many :custom_programs, -> { order(:day) }, dependent: :destroy
   has_many :exercises, through: :custom_programs, dependent: :destroy
   has_many :cross_train_exercise_preferences, foreign_key: :cross_train_program_id, dependent: :destroy
