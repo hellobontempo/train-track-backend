@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :programs
   resources :exercises
   resources :users, only: [:create]
+  get '/signup', to: 'users#create'
   post '/login', to: 'auth#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
