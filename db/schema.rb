@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_211025) do
+ActiveRecord::Schema.define(version: 2021_04_12_173924) do
 
   create_table "cross_train_exercise_preferences", force: :cascade do |t|
     t.integer "cross_train_program_id"
@@ -62,13 +62,22 @@ ActiveRecord::Schema.define(version: 2021_04_09_211025) do
 
   create_table "user_programs", force: :cascade do |t|
     t.date "start_date"
-    t.string "username"
     t.integer "program_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "race_date"
     t.integer "length_in_weeks"
+    t.integer "user_id", null: false
     t.index ["program_id"], name: "index_user_programs_on_program_id"
+    t.index ["user_id"], name: "index_user_programs_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "custom_programs", "exercises"
@@ -76,4 +85,5 @@ ActiveRecord::Schema.define(version: 2021_04_09_211025) do
   add_foreign_key "program_exercises", "exercises"
   add_foreign_key "program_exercises", "programs"
   add_foreign_key "user_programs", "programs"
+  add_foreign_key "user_programs", "users"
 end
