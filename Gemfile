@@ -5,6 +5,9 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
+
+gem "active_model_serializers", "~> 0.10.7"
+
 # Change to database Postgres for heroku launch
 gem 'pg'
 gem 'spring'
