@@ -7,7 +7,7 @@ class AuthController < ApplicationController
       payload = {user_id: user.id}
       token = encode_token(payload)
       render json: {user: user, jwt: token, message: ["Welcome #{user.name.titlecase}"]}
-    elsif !user
+    elsif !user && params[:email] != ''
       render json: {error: ["Hmm...are you sure you have an account?"]}
     else 
       render json: {error: ["Login Failed"]}
