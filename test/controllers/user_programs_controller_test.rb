@@ -12,7 +12,7 @@ class UserProgramsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user_program" do
     assert_difference('UserProgram.count') do
-      post user_programs_url, params: { user_program: { program_id: @user_program.program_id, start_date: @user_program.start_date, username: @user_program.username } }, as: :json
+      post user_programs_url, params: { user_program: { program_id: @user_program.program_id, start_date: @user_program.start_date } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class UserProgramsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user_program" do
-    patch user_program_url(@user_program), params: { user_program: { program_id: @user_program.program_id, start_date: @user_program.start_date, username: @user_program.username } }, as: :json
+    patch user_program_url(@user_program), params: { user_program: { program_id: @user_program.program_id, start_date: @user_program.start_date } }, as: :json
     assert_response 200
   end
 

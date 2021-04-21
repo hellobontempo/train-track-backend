@@ -9,7 +9,7 @@ class UserProgram < ApplicationRecord
   #add belongs_to user when build User model
   validates :length_in_weeks, numericality: { greater_than_or_equal_to: 4 }
   validates :length_in_weeks,  numericality: { less_than_or_equal_to: 24 }
-  validates :preferred_exercises, :username, :race_date, :length_in_weeks, presence: true
+  validates :preferred_exercises, :race_date, :length_in_weeks, presence: true
   before_save :set_start_date
   after_save  :make_personal_calendar
   
